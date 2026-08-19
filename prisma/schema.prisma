@@ -1,0 +1,69 @@
+// Social Media Algorithm Impact Assessment and Awareness System
+// Data model mirrors the conceptual framework in Chapter Two (Section 2.2.7):
+// three independent variables (ACP, EMD, TSA) act on academic performance (AP),
+// with algorithmic literacy (AL) modelled as a moderating variable.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite has no native enum type, so Role is stored as a plain string
+// restricted (at the application layer) to "STUDENT" | "ADMIN".
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  password        String
+  name            String
+  role            String   @default("STUDENT")
+  matricNumber    String?
+  faculty         String?
+  level           String?
+  gender          String?
+  ageBand         String?
+  primaryPlatform String?
+  createdAt       DateTime @default(now())
+
+  responses Response[]
+}
+
+// One row per completed assessment attempt (students may retake).
+model Response {
+  id     String @id @default(cuid())
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  // Raw item-level answers, keyed by question id, value 1-5.
+  // Stored as a JSON string (SQLite has no native Json column type).
+  answers String
+
+  // Construct scores (1.00 - 5.00 scale, mean of that construct's items).
+  acpScore Float // Algorithmic Content Personalisation
+  emdScore Float // Engagement-Maximising Design Features
+  tsaScore Float // Time Spent on Algorithm-Curated Platforms
+  alScore  Float // Algorithmic Literacy (moderating variable)
+
+  exposureIndex        Float // mean(acpScore, emdScore, tsaScore) - overall algorithmic-exposure index
+  academicImpactScore  Float // self-reported study-time / concentration impact (higher = more negative impact)
+
+  // Self-reported academic performance, captured as a CGPA band (Nigerian 5-point scale)
+  // plus a numeric midpoint used as the dependent variable in the regression analysis.
+  cgpaBand  String?
+  gpaValue  Float?
+
+  // Demographic snapshot at time of submission (kept even if the user later edits their profile).
+  faculty         String?
+  level           String?
+  gender          String?
+  ageBand         String?
+  primaryPlatform String?
+
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+}
