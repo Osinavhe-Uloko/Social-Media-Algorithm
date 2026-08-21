@@ -151,23 +151,25 @@ export default function AnalysisPage() {
               {!isNaN(data.regression.fPValue) &&
                 `, p = ${data.regression.fPValue.toFixed(3)}`}
             </p>
-            <table className="mt-3 min-w-full divide-y divide-slate-200 text-sm">
-              <thead className="text-left text-xs font-medium uppercase tracking-wide text-slate-500">
-                <tr>
-                  <th className="px-3 py-2">Predictor</th>
-                  <th className="px-3 py-2">B</th>
-                  <th className="px-3 py-2">SE</th>
-                  <th className="px-3 py-2">t</th>
-                  <th className="px-3 py-2">p</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                <PredictorRow p={data.regression.intercept} />
-                {data.regression.predictors.map((p) => (
-                  <PredictorRow key={p.name} p={p} />
-                ))}
-              </tbody>
-            </table>
+            <div className="overflow-x-auto">
+              <table className="mt-3 min-w-full divide-y divide-slate-200 text-sm">
+                <thead className="text-left text-xs font-medium uppercase tracking-wide text-slate-500">
+                  <tr>
+                    <th className="px-3 py-2">Predictor</th>
+                    <th className="px-3 py-2">B</th>
+                    <th className="px-3 py-2">SE</th>
+                    <th className="px-3 py-2">t</th>
+                    <th className="px-3 py-2">p</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  <PredictorRow p={data.regression.intercept} />
+                  {data.regression.predictors.map((p) => (
+                    <PredictorRow key={p.name} p={p} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
             <p className="mt-2 text-xs text-slate-400">
               * p &lt; 0.05. AL × IV rows, when enabled, test algorithmic
               literacy as a moderator of that predictor&apos;s effect, per the

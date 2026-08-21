@@ -1,6 +1,35 @@
 import { prisma } from "@/lib/db";
 import { mean, sampleStdDev } from "@/lib/stats";
+import { CONSTRUCT_META, QUESTIONS, ConstructKey } from "@/lib/constructs";
+import MetricsGlossary, { GlossaryEntry } from "@/components/MetricsGlossary";
 import Link from "next/link";
+
+const GLOSSARY_CONSTRUCTS: ConstructKey[] = ["ACP", "EMD", "TSA", "AL"];
+
+const EXTRA_GLOSSARY: GlossaryEntry[] = [
+  {
+    key: "Exposure",
+    name: "Exposure Index",
+    description:
+      "The average of a student's ACP, EMD, and TSA scores — one overall number for how strongly their day-to-day platform experience is being personalised, engineered for engagement, and displacing study time, combined.",
+  },
+  {
+    key: "CGPA band",
+    name: "Self-reported CGPA band",
+    description:
+      "The student's own report of their cumulative GPA range (e.g. \"3.5-4.49\"), converted to a numeric midpoint. This is the academic-performance figure the other constructs are compared against — it is self-reported, not pulled from official records.",
+  },
+];
+
+const GLOSSARY_ENTRIES: GlossaryEntry[] = [
+  ...GLOSSARY_CONSTRUCTS.map((key) => ({
+    key,
+    name: CONSTRUCT_META[key].name,
+    description: CONSTRUCT_META[key].description,
+    questions: QUESTIONS.filter((q) => q.construct === key).map((q) => q.text),
+  })),
+  ...EXTRA_GLOSSARY,
+];
 
 function StatCard({
   label,
@@ -60,7 +89,7 @@ export default async function AdminOverviewPage() {
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-slate-900">Research overview</h1>
           <p className="text-sm text-slate-500">
@@ -70,6 +99,14 @@ export default async function AdminOverviewPage() {
         <a href="/api/admin/export" className="btn-secondary">
           Export CSV
         </a>
+      </div>
+
+      <div className="card p-5">
+        <h2 className="font-semibold text-slate-900">What do these metrics mean?</h2>
+        <p className="mt-1 text-sm text-slate-500">
+          Every score below is a 1&ndash;5 mean of the Likert items belonging to that construct. Select a term to see the exact survey questions behind it.
+        </p>
+        <MetricsGlossary entries={GLOSSARY_ENTRIES} />
       </div>
 
       <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
@@ -108,15 +145,15 @@ export default async function AdminOverviewPage() {
               <p className="text-sm text-slate-400">No data yet.</p>
             )}
             {facultyBreakdown.map((g) => (
-              <div key={g.key} className="flex items-center gap-3 text-sm">
-                <div className="w-40 truncate text-slate-600">{g.key}</div>
+              <div key={g.key} className="flex items-center gap-2 text-sm sm:gap-3">
+                <div className="w-20 shrink-0 truncate text-slate-600 sm:w-40">{g.key}</div>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
                   <div
                     className="h-full rounded-full bg-brand-500"
                     style={{ width: `${Math.min(100, (g.meanExposureIndex / 5) * 100)}%` }}
                   />
                 </div>
-                <div className="w-24 text-right text-xs text-slate-400">
+                <div className="w-20 shrink-0 text-right text-xs text-slate-400 sm:w-24">
                   n={g.n}, x̄={g.meanExposureIndex.toFixed(2)}
                 </div>
               </div>
@@ -131,15 +168,15 @@ export default async function AdminOverviewPage() {
               <p className="text-sm text-slate-400">No data yet.</p>
             )}
             {platformBreakdown.map((g) => (
-              <div key={g.key} className="flex items-center gap-3 text-sm">
-                <div className="w-40 truncate text-slate-600">{g.key}</div>
+              <div key={g.key} className="flex items-center gap-2 text-sm sm:gap-3">
+                <div className="w-20 shrink-0 truncate text-slate-600 sm:w-40">{g.key}</div>
                 <div className="h-2 flex-1 overflow-hidden rounded-full bg-slate-100">
                   <div
                     className="h-full rounded-full bg-brand-500"
                     style={{ width: `${Math.min(100, (g.meanExposureIndex / 5) * 100)}%` }}
                   />
                 </div>
-                <div className="w-24 text-right text-xs text-slate-400">
+                <div className="w-20 shrink-0 text-right text-xs text-slate-400 sm:w-24">
                   n={g.n}, x̄={g.meanExposureIndex.toFixed(2)}
                 </div>
               </div>

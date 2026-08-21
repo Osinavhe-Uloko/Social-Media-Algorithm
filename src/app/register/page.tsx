@@ -70,8 +70,8 @@ export default function RegisterPage() {
               {error}
             </div>
           )}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="sm:col-span-2">
               <label className="label">Full name</label>
               <input
                 required
@@ -80,7 +80,7 @@ export default function RegisterPage() {
                 onChange={(e) => update("name", e.target.value)}
               />
             </div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <label className="label">Email</label>
               <input
                 type="email"
@@ -90,7 +90,7 @@ export default function RegisterPage() {
                 onChange={(e) => update("email", e.target.value)}
               />
             </div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <label className="label">Password</label>
               <input
                 type="password"
@@ -101,7 +101,7 @@ export default function RegisterPage() {
                 onChange={(e) => update("password", e.target.value)}
               />
             </div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <label className="label">Matric number (optional)</label>
               <input
                 className="input"
@@ -169,7 +169,7 @@ export default function RegisterPage() {
                 ))}
               </select>
             </div>
-            <div className="col-span-2">
+            <div className="sm:col-span-2">
               <label className="label">Primary platform</label>
               <select
                 className="input"

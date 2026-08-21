@@ -76,179 +76,127 @@ export const CONSTRUCT_META: Record<
   },
 };
 
+// This is the exact 13-item instrument administered in the field survey
+// ("The influence of Social Media Algorithms on Academic Performance").
+// Question numbering below matches the numbering used on the instrument.
 export const QUESTIONS: LikertQuestion[] = [
-  // Algorithmic Content Personalisation
+  // Algorithm Influenced Content Personalisation
   {
     id: "ACP1",
     construct: "ACP",
-    text: "The content I see on my main social media app feels tailored specifically to my interests.",
+    text: "The app keeps track of small things I do — how long I watch a video, what I pause on, or what I skip — and uses that to decide what to show me next.",
   },
   {
     id: "ACP2",
     construct: "ACP",
-    text: "I often see posts or videos related to something I only recently searched for, watched, or lingered on.",
+    text: "Over time, the app seems to build a clear picture of exactly what I like, sometimes noticing patterns in my behaviour before I notice them myself.",
   },
   {
     id: "ACP3",
     construct: "ACP",
-    text: "My feed rarely shows things I would consider random or irrelevant to me.",
-  },
-  {
-    id: "ACP4",
-    construct: "ACP",
-    text: "When I compare my feed with a friend's on the same app, we rarely see the same content.",
-  },
-  {
-    id: "ACP5",
-    construct: "ACP",
-    text: "The app seems to \"know\" what will catch my attention before I consciously look for it.",
+    text: "The content I see feels specifically chosen for me based on my history on the app, rather than just being posts from people I follow in the order they were made.",
   },
 
   // Engagement-Maximising Design Features
   {
     id: "EMD1",
     construct: "EMD",
-    text: "I find it hard to stop scrolling once I start, even when I only planned a quick check.",
+    text: "As soon as one video ends, the next one starts playing automatically, so I never get a natural pause to decide whether to keep watching or stop.",
   },
   {
     id: "EMD2",
     construct: "EMD",
-    text: "Videos or posts keep playing automatically without me actively choosing to continue.",
+    text: "The feed has no clear end — there's always another post waiting, which makes it harder for me to find a natural point to stop scrolling.",
   },
   {
     id: "EMD3",
     construct: "EMD",
-    text: "Notifications pull my attention back to the app even when I have closed it to focus on schoolwork.",
-  },
-  {
-    id: "EMD4",
-    construct: "EMD",
-    text: "I regularly end up spending longer on an app than I originally intended to.",
-  },
-  {
-    id: "EMD5",
-    construct: "EMD",
-    text: "There is rarely a natural stopping point where the app signals I have seen everything new.",
+    text: "Notifications often appear at moments that seem timed to pull me back in, especially after I haven't opened the app in a while.",
   },
 
-  // Time Spent on Algorithm-Curated Platforms
+  // System Interference with Study Time
   {
     id: "TSA1",
     construct: "TSA",
-    text: "On a typical day, I spend a large part of my free time on algorithm-curated apps (TikTok, Instagram, Facebook, X).",
+    text: "Because the app keeps showing me things it seems to know I'll find hard to ignore, a short break during study time often turns into a much longer one than I planned.",
   },
   {
     id: "TSA2",
     construct: "TSA",
-    text: "I spend more time on social media during study periods than I plan to.",
+    text: "I find it harder to stop using apps that personalise what I see, like TikTok or Instagram, than apps that just show messages in the order they arrive, like WhatsApp..",
   },
   {
     id: "TSA3",
     construct: "TSA",
-    text: "Social media use has caused me to reduce time I had set aside for reading or assignments.",
-  },
-  {
-    id: "TSA4",
-    construct: "TSA",
-    text: "I check algorithm-curated apps during lectures or study sessions.",
-  },
-  {
-    id: "TSA5",
-    construct: "TSA",
-    text: "A short, planned break on social media often extends much longer than intended.",
+    text: "Even after I stop scrolling, I sometimes keep thinking about what I saw, which makes it harder to fully concentrate on studying afterward..",
   },
 
-  // Algorithmic Literacy (moderator)
+  // Algorithmic Awareness and Resistance (moderator)
   {
     id: "AL1",
     construct: "AL",
-    text: "I understand that my feed is arranged by an algorithm rather than shown in the order things were posted.",
+    text: "I recognise when an app is using autoplay, endless scrolling, or notifications specifically to keep me engaged longer than I intended.",
   },
   {
     id: "AL2",
     construct: "AL",
-    text: "I can explain, in general terms, what kind of data platforms use to decide what to show me.",
+    text: "Once I started noticing these design tricks, I began taking active steps to reduce their effect on me, like using screen time limits or app timers.",
   },
   {
     id: "AL3",
     construct: "AL",
-    text: "I actively think about why I am being shown a particular post or video.",
-  },
-  {
-    id: "AL4",
-    construct: "AL",
-    text: "I know that two people who follow the same accounts can still see very different feeds.",
-  },
-  {
-    id: "AL5",
-    construct: "AL",
-    text: "I have never thought about or looked into why my feed shows what it shows.",
-    reverse: true,
+    text: "If I understood more about exactly how these apps track and use my activity, I would probably change how I use them.",
   },
 
   // Academic Performance / Impact (dependent variable, Likert component)
   {
     id: "AP1",
     construct: "AP",
-    text: "My use of social media has negatively affected my study time.",
-  },
-  {
-    id: "AP2",
-    construct: "AP",
-    text: "I find it difficult to concentrate on academic work after a session on social media.",
-  },
-  {
-    id: "AP3",
-    construct: "AP",
-    text: "I have missed, delayed, or rushed an assignment or deadline because of time spent on social media.",
-  },
-  {
-    id: "AP4",
-    construct: "AP",
-    text: "Overall, I am satisfied with how I balance social media use and my academic responsibilities.",
-    reverse: true,
+    text: "Overall, I believe how these apps are specifically designed and personalised affects my academic performance more than my own habits or self-discipline.",
   },
 ];
 
 export const FACULTIES = [
-  "Agriculture",
-  "Arts",
+  "Agricultural Science",
+  "Computing",
   "Education",
   "Engineering",
-  "Environmental Sciences",
+  "Environmental Science",
   "Law",
-  "Life Sciences",
-  "Management Sciences",
-  "Medical Sciences",
-  "Pharmacy",
-  "Physical Sciences",
-  "Social Sciences",
+  "Life Science",
+  "Management Science",
+  "Physical Science",
+  "Social Science",
   "Other",
 ];
 
-export const LEVELS = ["100", "200", "300", "400", "500", "Postgraduate"];
+export const LEVELS = ["100", "200", "300", "400", "500"];
 
 export const GENDERS = ["Female", "Male", "Prefer not to say"];
 
-export const AGE_BANDS = ["16-19", "20-23", "24-27", "28+"];
+export const AGE_BANDS = ["16-20", "21-25", "26-30", "31+"];
 
 export const PLATFORMS = [
-  "TikTok",
   "Instagram",
+  "Tiktok",
   "Facebook",
-  "Twitter/X",
+  "Twitter(X)",
   "WhatsApp",
+  "Snapchat",
+  "LinkedIn",
+  "Pinterest",
   "Other",
 ];
 
-// CGPA bands on the standard Nigerian 5-point scale, mapped to a numeric
-// midpoint used as the dependent variable in the regression analysis.
+// CGPA bands, matching the ranges used on the field survey instrument,
+// mapped to a numeric midpoint used as the dependent variable in the
+// regression analysis.
 export const CGPA_BANDS: { band: string; value: number | null }[] = [
-  { band: "First Class (4.50 - 5.00)", value: 4.75 },
-  { band: "Second Class Upper (3.50 - 4.49)", value: 4.0 },
-  { band: "Second Class Lower (2.40 - 3.49)", value: 2.95 },
-  { band: "Third Class (1.50 - 2.39)", value: 1.95 },
-  { band: "Pass (1.00 - 1.49)", value: 1.25 },
+  { band: "4.5-5.0", value: 4.75 },
+  { band: "3.5-4.49", value: 3.995 },
+  { band: "3.0-3.49", value: 3.245 },
+  { band: "2.0-2.99", value: 2.495 },
+  { band: "Below 2.0", value: 1.5 },
   { band: "Prefer not to say", value: null },
 ];
 

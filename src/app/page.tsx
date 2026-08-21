@@ -26,7 +26,7 @@ const PILLARS = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-brand-950 via-brand-900 to-slate-50">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+      <header className="mx-auto flex max-w-6xl items-center justify-between px-4 py-6 sm:px-6">
         <div className="text-sm font-semibold tracking-wide text-white/90">
           SMAIAS
         </div>
@@ -40,7 +40,7 @@ export default function HomePage() {
         </nav>
       </header>
 
-      <section className="mx-auto max-w-4xl px-6 pb-20 pt-8 text-center text-white">
+      <section className="mx-auto max-w-4xl px-4 pb-20 pt-8 sm:px-6 text-center text-white">
         <p className="mb-3 text-sm font-medium uppercase tracking-widest text-brand-200">
           University of Benin &middot; Algorithmic Awareness Research
         </p>
@@ -54,7 +54,7 @@ export default function HomePage() {
           your own awareness of these mechanisms &mdash; and how each relates to
           academic performance.
         </p>
-        <div className="mt-8 flex justify-center gap-3">
+        <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <Link href="/register" className="btn-primary px-6 py-3 text-base">
             Take the self-assessment
           </Link>
@@ -64,7 +64,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-20">
+      <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PILLARS.map((p) => (
             <div key={p.key} className="card p-5">

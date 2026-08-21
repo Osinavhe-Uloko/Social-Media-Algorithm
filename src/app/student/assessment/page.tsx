@@ -126,7 +126,7 @@ export default function AssessmentPage() {
       )}
 
       {currentSection ? (
-        <div className="card p-6">
+        <div className="card p-4 sm:p-6">
           <span className="badge bg-brand-50 text-brand-700">
             {currentSection.key}
           </span>
@@ -164,7 +164,7 @@ export default function AssessmentPage() {
           </div>
         </div>
       ) : (
-        <div className="card p-6">
+        <div className="card p-4 sm:p-6">
           <h2 className="text-lg font-semibold text-slate-900">
             One last thing (optional)
           </h2>
