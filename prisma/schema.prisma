@@ -7,13 +7,18 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// Neon Postgres in production (see README for Vercel + Neon setup).
+// DATABASE_URL should be Neon's pooled connection string; DIRECT_URL its
+// unpooled one, used only for schema pushes/migrations.
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
-// SQLite has no native enum type, so Role is stored as a plain string
-// restricted (at the application layer) to "STUDENT" | "ADMIN".
+// Role is stored as a plain string restricted (at the application layer)
+// to "STUDENT" | "ADMIN", carried over from this schema's original SQLite
+// datasource rather than a native Postgres enum.
 model User {
   id              String   @id @default(cuid())
   email           String   @unique
